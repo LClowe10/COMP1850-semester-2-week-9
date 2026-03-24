@@ -7,7 +7,7 @@ OBJ = $(SRC:.c=.o)
 EXE = stack
 
 $(EXE): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^
+    $(CC) $(CFLAGS) -o $@ $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

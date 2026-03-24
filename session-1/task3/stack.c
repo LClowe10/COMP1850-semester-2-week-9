@@ -31,7 +31,7 @@ Stack *createStack( void ) {
  */
 void enlargeStack( Stack *stack ) {
     stack->size += stack->blockSize;
-    stack->data = realloc(stack->data,stack->size); // allocate a further 'block' to the stack to increase size
+    stack->data = realloc(stack->data,stack->size*sizeof(Data*)); // allocate a further 'block' to the stack to increase size
     return;
 }
 
@@ -59,6 +59,10 @@ Data *pop( Stack *stack ) {
 
     Data *new = stack->data[stack->top];
     stack->top--;
+    if ((stack->top+1) % stack->blockSize == 0)
+    {
+        shrinkStack(stack);
+    }
 
     return new;
 }
@@ -80,5 +84,12 @@ void freeStack( Stack *stack ) {
     for( int k=0; k<stack->size; ++k )
         free( stack->data[k] ); // free stack Data item
     free( stack->data );        // free stack Data array
+    return;
+}
+
+void shrinkStack( Stack *stack )
+{
+    stack->size -= stack->blockSize;
+    stack->data = realloc(stack->data,stack->size*sizeof(Data*)); // gets rid of a block
     return;
 }

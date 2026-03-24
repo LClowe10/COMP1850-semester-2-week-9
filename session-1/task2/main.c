@@ -15,6 +15,11 @@ int main( void ) {
     // push a node
     push(stack,1);
     traverseI(stack->top);  // display the stack
+    push(stack, 3);
+    traverseW(stack->top);
+    pop(stack);
+    traverseW(stack->top);
+
 
     // free stack memory
     freeNodes( stack->top );

@@ -63,9 +63,11 @@ void traverseI( Node *start ) {
  * while-based traversal
  */
 void traverseW( Node *node ) {  
-
-    // implementation from task1
-
+    while(node!=NULL)
+    {
+        printf(" %d", node->data->value);
+    }
+    printf("\n");
     return;
 }
 
@@ -73,8 +75,15 @@ void traverseW( Node *node ) {
  * recursive traversal
  */
 void traverseR( Node *node ) {  
-    
-    // implementation from task1
-    
+    if (node==NULL)
+    {
+        return;
+    }
+    else 
+    {
+        printf("%d",node->data->value);
+        node = node->next;
+        traverseR(node);
+    }
 }
 
